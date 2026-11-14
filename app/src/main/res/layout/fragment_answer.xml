@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 答题页（打地鼠风格）：顶部题目卡 + 底部 6 个土洞，动物从洞里冒出并举着数字牌 -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg">
+
+    <!-- 顶部小型累计奖杯栏：铜 / 银 / 金，未点亮时显示灰色 -->
+    <ImageView
+        android:id="@+id/trophyBronze"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
+        android:contentDescription="@string/cd_trophy"
+        android:src="@drawable/ic_trophy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/trophySilver"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="6dp"
+        android:contentDescription="@string/cd_trophy"
+        android:src="@drawable/ic_trophy"
+        app:layout_constraintStart_toEndOf="@id/trophyBronze"
+        app:layout_constraintTop_toTopOf="@id/trophyBronze" />
+
+    <ImageView
+        android:id="@+id/trophyGold"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="6dp"
+        android:contentDescription="@string/cd_trophy"
+        android:src="@drawable/ic_trophy"
+        app:layout_constraintStart_toEndOf="@id/trophySilver"
+        app:layout_constraintTop_toTopOf="@id/trophyBronze" />
+
+    <!-- 顶部进度小字 -->
+    <TextView
+        android:id="@+id/progressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/bg_pill"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:textColor="@color/text_dark"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 右上角：语音开关与设置 -->
+    <ImageView
+        android:id="@+id/btnSettings"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_icon_button"
+        android:contentDescription="@string/cd_settings"
+        android:padding="8dp"
+        android:src="@drawable/ic_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnMute"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_icon_button"
+        android:contentDescription="@string/cd_mute"
+        android:padding="8dp"
+        android:src="@drawable/ic_volume_on"
+        app:layout_constraintEnd_toStartOf="@id/btnSettings"
+        app:layout_constraintTop_toTopOf="@id/btnSettings" />
+
+    <!-- 题目卡 -->
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_question_card"
+        android:gravity="center"
+        android:textColor="@color/text_dark"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSettings" />
+
+    <!-- 倒计时（题目卡右上角，最后 3 秒变红并伴随嘟嘟音） -->
+    <TextView
+        android:id="@+id/countdownText"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_countdown_pill"
+        android:gravity="center"
+        android:minWidth="58dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/text_dark"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/tvQuestion"
+        app:layout_constraintTop_toTopOf="@id/tvQuestion" />
+
+    <!-- 文字提示（语音不可用时的降级通道） -->
+    <TextView
+        android:id="@+id/tvHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/hint_wrong"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvQuestion" />
+
+    <!-- 星星飘落特效层 -->
+    <FrameLayout
+        android:id="@+id/starLayer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/holesRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHint" />
+
+    <!-- 底部 6 个土洞：等距均分 -->
+    <LinearLayout
+        android:id="@+id/holesRow"
+        android:layout_width="0dp"
+        android:layout_height="196dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- ============ 土洞 0 ============ -->
+        <FrameLayout
+            android:id="@+id/hole0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipChildren="true">
+
+            <ImageView
+                android:id="@+id/green0"
+                android:layout_width="126dp"
+                android:layout_height="64dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="14dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_correct"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/nest0"
+                android:layout_width="104dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="22dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_nest_cat" />
+
+            <FrameLayout
+                android:id="@+id/pop0"
+                android:layout_width="match_parent"
+                android:layout_height="148dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="24dp"
+                android:clipChildren="true">
+
+                <ImageView
+                    android:id="@+id/animal0"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
+                    android:layout_gravity="top|center_horizontal"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_cat" />
+
+                <TextView
+                    android:id="@+id/number0"
+                    android:layout_width="54dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="64dp"
+                    android:background="@drawable/bg_number_placard"
+                    android:gravity="center"
+                    android:textColor="@color/text_dark"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/holeFront0"
+                android:layout_width="132dp"
+                android:layout_height="34dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_front" />
+
+            <ImageView
+                android:id="@+id/hammer0"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:importantForAccessibility="no"
+                android:rotation="-38"
+                android:src="@drawable/ic_hammer"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <!-- ============ 土洞 1 ============ -->
+        <FrameLayout
+            android:id="@+id/hole1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipChildren="true">
+
+            <ImageView
+                android:id="@+id/green1"
+                android:layout_width="126dp"
+                android:layout_height="64dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="14dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_correct"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/nest1"
+                android:layout_width="104dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="22dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_nest_cat" />
+
+            <FrameLayout
+                android:id="@+id/pop1"
+                android:layout_width="match_parent"
+                android:layout_height="148dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="24dp"
+                android:clipChildren="true">
+
+                <ImageView
+                    android:id="@+id/animal1"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
+                    android:layout_gravity="top|center_horizontal"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_pig" />
+
+                <TextView
+                    android:id="@+id/number1"
+                    android:layout_width="54dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="64dp"
+                    android:background="@drawable/bg_number_placard"
+                    android:gravity="center"
+                    android:textColor="@color/text_dark"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/holeFront1"
+                android:layout_width="132dp"
+                android:layout_height="34dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_front" />
+
+            <ImageView
+                android:id="@+id/hammer1"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:importantForAccessibility="no"
+                android:rotation="-38"
+                android:src="@drawable/ic_hammer"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <!-- ============ 土洞 2 ============ -->
+        <FrameLayout
+            android:id="@+id/hole2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipChildren="true">
+
+            <ImageView
+                android:id="@+id/green2"
+                android:layout_width="126dp"
+                android:layout_height="64dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="14dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_correct"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/nest2"
+                android:layout_width="104dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="22dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_nest_cat" />
+
+            <FrameLayout
+                android:id="@+id/pop2"
+                android:layout_width="match_parent"
+                android:layout_height="148dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="24dp"
+                android:clipChildren="true">
+
+                <ImageView
+                    android:id="@+id/animal2"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
+                    android:layout_gravity="top|center_horizontal"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_dog" />
+
+                <TextView
+                    android:id="@+id/number2"
+                    android:layout_width="54dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="64dp"
+                    android:background="@drawable/bg_number_placard"
+                    android:gravity="center"
+                    android:textColor="@color/text_dark"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/holeFront2"
+                android:layout_width="132dp"
+                android:layout_height="34dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_front" />
+
+            <ImageView
+                android:id="@+id/hammer2"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:importantForAccessibility="no"
+                android:rotation="-38"
+                android:src="@drawable/ic_hammer"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <!-- ============ 土洞 3 ============ -->
+        <FrameLayout
+            android:id="@+id/hole3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipChildren="true">
+
+            <ImageView
+                android:id="@+id/green3"
+                android:layout_width="126dp"
+                android:layout_height="64dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="14dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_correct"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/nest3"
+                android:layout_width="104dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="22dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_nest_cat" />
+
+            <FrameLayout
+                android:id="@+id/pop3"
+                android:layout_width="match_parent"
+                android:layout_height="148dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="24dp"
+                android:clipChildren="true">
+
+                <ImageView
+                    android:id="@+id/animal3"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
+                    android:layout_gravity="top|center_horizontal"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_monkey" />
+
+                <TextView
+                    android:id="@+id/number3"
+                    android:layout_width="54dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="64dp"
+                    android:background="@drawable/bg_number_placard"
+                    android:gravity="center"
+                    android:textColor="@color/text_dark"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/holeFront3"
+                android:layout_width="132dp"
+                android:layout_height="34dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_front" />
+
+            <ImageView
+                android:id="@+id/hammer3"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:importantForAccessibility="no"
+                android:rotation="-38"
+                android:src="@drawable/ic_hammer"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <!-- ============ 土洞 4 ============ -->
+        <FrameLayout
+            android:id="@+id/hole4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipChildren="true">
+
+            <ImageView
+                android:id="@+id/green4"
+                android:layout_width="126dp"
+                android:layout_height="64dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="14dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_correct"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/nest4"
+                android:layout_width="104dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="22dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_nest_cat" />
+
+            <FrameLayout
+                android:id="@+id/pop4"
+                android:layout_width="match_parent"
+                android:layout_height="148dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="24dp"
+                android:clipChildren="true">
+
+                <ImageView
+                    android:id="@+id/animal4"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
+                    android:layout_gravity="top|center_horizontal"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_rabbit" />
+
+                <TextView
+                    android:id="@+id/number4"
+                    android:layout_width="54dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="64dp"
+                    android:background="@drawable/bg_number_placard"
+                    android:gravity="center"
+                    android:textColor="@color/text_dark"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/holeFront4"
+                android:layout_width="132dp"
+                android:layout_height="34dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_front" />
+
+            <ImageView
+                android:id="@+id/hammer4"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:importantForAccessibility="no"
+                android:rotation="-38"
+                android:src="@drawable/ic_hammer"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <!-- ============ 土洞 5 ============ -->
+        <FrameLayout
+            android:id="@+id/hole5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipChildren="true">
+
+            <ImageView
+                android:id="@+id/green5"
+                android:layout_width="126dp"
+                android:layout_height="64dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="14dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_correct"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/nest5"
+                android:layout_width="104dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="22dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_nest_cat" />
+
+            <FrameLayout
+                android:id="@+id/pop5"
+                android:layout_width="match_parent"
+                android:layout_height="148dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="24dp"
+                android:clipChildren="true">
+
+                <ImageView
+                    android:id="@+id/animal5"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
+                    android:layout_gravity="top|center_horizontal"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_bear" />
+
+                <TextView
+                    android:id="@+id/number5"
+                    android:layout_width="54dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="64dp"
+                    android:background="@drawable/bg_number_placard"
+                    android:gravity="center"
+                    android:textColor="@color/text_dark"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/holeFront5"
+                android:layout_width="132dp"
+                android:layout_height="34dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:importantForAccessibility="no"
+                android:src="@drawable/bg_hole_front" />
+
+            <ImageView
+                android:id="@+id/hammer5"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:importantForAccessibility="no"
+                android:rotation="-38"
+                android:src="@drawable/ic_hammer"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

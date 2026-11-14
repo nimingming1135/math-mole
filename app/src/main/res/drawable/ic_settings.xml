@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 设置入口：滑块样式（三条轨道 + 圆点） -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path android:pathData="M5,7 L19,7 M5,12 L19,12 M5,17 L19,17"
+        android:strokeColor="#4A4458" android:strokeWidth="2" android:strokeLineCap="round" />
+    <path android:fillColor="#4A4458" android:pathData="M6.4,7 a2.6,2.6 0 1,0 5.2,0 a2.6,2.6 0 1,0 -5.2,0 z" />
+    <path android:fillColor="#4A4458" android:pathData="M12.4,12 a2.6,2.6 0 1,0 5.2,0 a2.6,2.6 0 1,0 -5.2,0 z" />
+    <path android:fillColor="#4A4458" android:pathData="M4.4,17 a2.6,2.6 0 1,0 5.2,0 a2.6,2.6 0 1,0 -5.2,0 z" />
+</vector>

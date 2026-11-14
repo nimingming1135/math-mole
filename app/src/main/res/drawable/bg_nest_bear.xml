@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 熊洞：山石洞穴（灰蓝岩石色） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#C6CEDA"
+                android:centerColor="#94A0B2"
+                android:endColor="#6A7688" />
+            <stroke android:width="2dp" android:color="#7C8899" />
+        </shape>
+    </item>
+    <item android:bottom="12dp" android:left="22dp" android:right="22dp" android:top="10dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="28dp"
+                android:startColor="#23282F"
+                android:endColor="#3D454F" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">口算打地鼠</string>
+
+    <!-- 文字提示（语音不可用时的降级通道） -->
+    <string name="hint_right">答对了！</string>
+    <string name="hint_wrong">再想想哦</string>
+    <string name="hint_timeout">超时啦，下次快一点哦</string>
+    <string name="enter_review">30 题完成！来把错题消灭掉吧</string>
+
+    <!-- 顶部进度 -->
+    <string name="progress_main">第 %1$d/%2$d 题</string>
+    <string name="progress_review">错题巩固 %1$d/%2$d</string>
+
+    <!-- 无障碍描述 -->
+    <string name="cd_mute">语音开关</string>
+    <string name="cd_settings">设置</string>
+    <string name="cd_trophy">奖杯进度</string>
+    <string name="cd_answer_button">答案按钮</string>
+    <string name="cd_back">返回答题页</string>
+    <string name="cd_hole">答案土洞</string>
+
+    <!-- 难度关卡选择页 -->
+    <string name="level_title">选择关卡</string>
+    <string name="level_subtitle">答满 30 题并消灭错题，即可解锁下一关</string>
+    <string name="level_locked_toast">先通关上一关哦</string>
+
+    <!-- 设置弹窗 -->
+    <string name="settings_title">设置</string>
+    <string name="settings_countdown">答题倒计时</string>
+    <string name="countdown_seconds">%1$d 秒</string>
+    <string name="settings_voice">语音播报</string>
+    <string name="settings_choose_level">选择难度</string>
+    <string name="dialog_done">完成</string>
+
+    <!-- 完成弹窗 -->
+    <string name="finish_title">完成啦！</string>
+    <string name="finish_with_unlock">太棒了！全部完成，新关卡「%1$s」已解锁！</string>
+    <string name="finish_plain">太棒了！全部完成，你是最棒的！</string>
+    <string name="review_finish_msg">错题全部消灭，真厉害！</string>
+    <string name="ok">继续闯关</string>
+
+    <!-- 设置项无级调节按钮的无障碍描述 -->
+    <string name="cd_decrease">减少</string>
+    <string name="cd_increase">增加</string>
+</resources>

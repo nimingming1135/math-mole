@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 可爱小狗：奶咖色圆脸 + 下垂耳朵 + 浅色口鼻 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- 下垂耳朵（先画，被脸覆盖内侧） -->
+    <path android:fillColor="#B97A4B" android:pathData="M4,21 a4.5,9.5 0 1,0 9,0 a4.5,9.5 0 1,0 -9,0 z" />
+    <path android:fillColor="#B97A4B" android:pathData="M35,21 a4.5,9.5 0 1,0 9,0 a4.5,9.5 0 1,0 -9,0 z" />
+    <!-- 圆脸 -->
+    <path android:fillColor="#E0A96D" android:pathData="M10,28 a14,14 0 1,0 28,0 a14,14 0 1,0 -28,0 z" />
+    <!-- 浅色口鼻区 -->
+    <path android:fillColor="#FBE3C3" android:pathData="M16,33 a8,6 0 1,0 16,0 a8,6 0 1,0 -16,0 z" />
+    <!-- 眼睛 -->
+    <path android:fillColor="#4A4458" android:pathData="M14.3,23 a2.2,2.2 0 1,0 4.4,0 a2.2,2.2 0 1,0 -4.4,0 z" />
+    <path android:fillColor="#4A4458" android:pathData="M29.3,23 a2.2,2.2 0 1,0 4.4,0 a2.2,2.2 0 1,0 -4.4,0 z" />
+    <!-- 鼻子与嘴 -->
+    <path android:fillColor="#4A4458" android:pathData="M21.4,30 a2.6,2.6 0 1,0 5.2,0 a2.6,2.6 0 1,0 -5.2,0 z" />
+    <path
+        android:pathData="M24,32.6 L24,34 M24,34 Q21.5,36.5 19,35 M24,34 Q26.5,36.5 29,35"
+        android:strokeColor="#4A4458" android:strokeWidth="1.4" android:strokeLineCap="round" />
+</vector>

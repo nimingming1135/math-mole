@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 奖杯：单色矢量，运行时用 setColorFilter 切换铜/银/金/灰 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- 杯体（下半为半圆） -->
+    <path android:fillColor="#4A4458" android:pathData="M7,3 L17,3 L17,9 A5,5 0 0,1 7,9 Z" />
+    <!-- 两侧杯耳 -->
+    <path android:pathData="M7,4.5 C4.2,4.5 3.2,7.5 5.8,9.2"
+        android:strokeColor="#4A4458" android:strokeWidth="1.6" android:strokeLineCap="round" />
+    <path android:pathData="M17,4.5 C19.8,4.5 20.8,7.5 18.2,9.2"
+        android:strokeColor="#4A4458" android:strokeWidth="1.6" android:strokeLineCap="round" />
+    <!-- 杯柄与底座 -->
+    <path android:fillColor="#4A4458" android:pathData="M10.5,13.5 L13.5,13.5 L14,17 L10,17 Z" />
+    <path android:fillColor="#4A4458" android:pathData="M8,17 L16,17 L16,19 L8,19 Z" />
+</vector>

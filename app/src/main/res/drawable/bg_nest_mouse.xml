@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 老鼠洞：土堆 + 深色洞口（经典地鼠洞） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#C9A176"
+                android:centerColor="#9A6B41"
+                android:endColor="#6B4A2E" />
+        </shape>
+    </item>
+    <item android:bottom="12dp" android:left="20dp" android:right="20dp" android:top="8dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="30dp"
+                android:startColor="#3A2413"
+                android:endColor="#5C3A20" />
+        </shape>
+    </item>
+</layer-list>

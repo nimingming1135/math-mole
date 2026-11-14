@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 可爱小猫：橘色圆脸 + 尖耳朵 + 胡须 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- 耳朵（先画，底部被脸覆盖） -->
+    <path android:fillColor="#F5A25D" android:pathData="M8,19 L13,4 L23,12 Z" />
+    <path android:fillColor="#FFD9C7" android:pathData="M12,15 L14.5,8 L19,12.5 Z" />
+    <path android:fillColor="#F5A25D" android:pathData="M40,19 L35,4 L25,12 Z" />
+    <path android:fillColor="#FFD9C7" android:pathData="M36,15 L33.5,8 L29,12.5 Z" />
+    <!-- 圆脸 -->
+    <path android:fillColor="#F5A25D" android:pathData="M10,28 a14,14 0 1,0 28,0 a14,14 0 1,0 -28,0 z" />
+    <!-- 眼睛 -->
+    <path android:fillColor="#4A4458" android:pathData="M14.8,24 a2.2,2.2 0 1,0 4.4,0 a2.2,2.2 0 1,0 -4.4,0 z" />
+    <path android:fillColor="#4A4458" android:pathData="M26.8,24 a2.2,2.2 0 1,0 4.4,0 a2.2,2.2 0 1,0 -4.4,0 z" />
+    <!-- 粉鼻子与 w 形嘴 -->
+    <path android:fillColor="#E8737F" android:pathData="M22,29 L26,29 L24,32 Z" />
+    <path
+        android:pathData="M24,32 L24,33.5 M24,33.5 Q22,36 19,35 M24,33.5 Q26,36 29,35"
+        android:strokeColor="#4A4458" android:strokeWidth="1.4" android:strokeLineCap="round" />
+    <!-- 胡须 -->
+    <path
+        android:pathData="M5,26 L12,27 M5,31 L12,30 M43,26 L36,27 M43,31 L36,30"
+        android:strokeColor="#C08A5A" android:strokeWidth="1.2" android:strokeLineCap="round" />
+    <!-- 腮红 -->
+    <path android:fillColor="#FFC1CC" android:fillAlpha="0.55"
+        android:pathData="M9.2,30 a2.8,2 0 1,0 5.6,0 a2.8,2 0 1,0 -5.6,0 z" />
+    <path android:fillColor="#FFC1CC" android:fillAlpha="0.55"
+        android:pathData="M33.2,30 a2.8,2 0 1,0 5.6,0 a2.8,2 0 1,0 -5.6,0 z" />
+</vector>

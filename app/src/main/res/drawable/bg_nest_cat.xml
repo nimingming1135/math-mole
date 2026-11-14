@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 猫窝：柔软圆形垫子（暖粉米色），边缘有绒毛感 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="60dp"
+                android:startColor="#FFE9DC"
+                android:endColor="#E8B79A" />
+            <stroke android:width="2dp" android:color="#D49B7A" />
+        </shape>
+    </item>
+    <item android:bottom="6dp" android:left="10dp" android:right="10dp" android:top="6dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="50dp"
+                android:startColor="#F6D3BC"
+                android:endColor="#D9A281" />
+        </shape>
+    </item>
+</layer-list>

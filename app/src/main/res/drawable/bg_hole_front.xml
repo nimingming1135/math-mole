@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 洞口前的土堆：上浅下深的泥土椭圆，用来遮住动物的下半身（"从土里冒出来"的关键） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:type="linear"
+        android:angle="270"
+        android:startColor="@color/soil_light"
+        android:centerColor="@color/soil_mid"
+        android:endColor="@color/soil_dark" />
+</shape>

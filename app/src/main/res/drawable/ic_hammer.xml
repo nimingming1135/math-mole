@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 锤子：铁头 + 木柄（点击答案时砸下） -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- 木柄 -->
+    <path
+        android:fillColor="#B5824E"
+        android:pathData="M22,18 L28,18 L28,42 A3,3 0 0,1 22,42 Z" />
+    <path
+        android:fillColor="#96683A"
+        android:pathData="M25.4,18 L28,18 L28,42 A3,3 0 0,1 25.4,44.4 Z" />
+    <!-- 铁头 -->
+    <path
+        android:fillColor="#9AA3B0"
+        android:pathData="M7,10 A4,4 0 0,1 11,6 L37,6 A4,4 0 0,1 41,10 L41,16 A4,4 0 0,1 37,20 L11,20 A4,4 0 0,1 7,16 Z" />
+    <path
+        android:fillColor="#7C8492"
+        android:pathData="M7,15 L41,15 L41,16 A4,4 0 0,1 37,20 L11,20 A4,4 0 0,1 7,16 Z" />
+</vector>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 可爱小兔：浅粉圆脸 + 长耳朵 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- 长耳朵（先画，底部被脸覆盖） -->
+    <path android:fillColor="#F8CDDF" android:pathData="M11,9 a4.5,9 0 1,0 9,0 a4.5,9 0 1,0 -9,0 z" />
+    <path android:fillColor="#FDDFE9" android:pathData="M13.1,9.5 a2.4,6.5 0 1,0 4.8,0 a2.4,6.5 0 1,0 -4.8,0 z" />
+    <path android:fillColor="#F8CDDF" android:pathData="M28,9 a4.5,9 0 1,0 9,0 a4.5,9 0 1,0 -9,0 z" />
+    <path android:fillColor="#FDDFE9" android:pathData="M30.1,9.5 a2.4,6.5 0 1,0 4.8,0 a2.4,6.5 0 1,0 -4.8,0 z" />
+    <!-- 圆脸 -->
+    <path android:fillColor="#F8CDDF" android:pathData="M11,30 a13,13 0 1,0 26,0 a13,13 0 1,0 -26,0 z" />
+    <!-- 眼睛 -->
+    <path android:fillColor="#4A4458" android:pathData="M15.3,27 a2.2,2.2 0 1,0 4.4,0 a2.2,2.2 0 1,0 -4.4,0 z" />
+    <path android:fillColor="#4A4458" android:pathData="M28.3,27 a2.2,2.2 0 1,0 4.4,0 a2.2,2.2 0 1,0 -4.4,0 z" />
+    <!-- 粉鼻子与嘴 -->
+    <path android:fillColor="#E8737F" android:pathData="M22.2,31 L25.8,31 L24,33.5 Z" />
+    <path
+        android:pathData="M24,33.5 L24,34.5 M24,34.5 Q22,36.5 20,35.5 M24,34.5 Q26,36.5 28,35.5"
+        android:strokeColor="#C2618C" android:strokeWidth="1.4" android:strokeLineCap="round" />
+    <!-- 腮红 -->
+    <path android:fillColor="#FF9FB2" android:fillAlpha="0.6"
+        android:pathData="M9.9,32 a2.6,1.9 0 1,0 5.2,0 a2.6,1.9 0 1,0 -5.2,0 z" />
+    <path android:fillColor="#FF9FB2" android:fillAlpha="0.6"
+        android:pathData="M32.9,32 a2.6,1.9 0 1,0 5.2,0 a2.6,1.9 0 1,0 -5.2,0 z" />
+</vector>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 树洞：树干年轮 + 深色树洞（森林绿棕） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#A8825A"
+                android:centerColor="#7E5B38"
+                android:endColor="#5C3F24" />
+            <stroke android:width="2dp" android:color="#6B8E5A" />
+        </shape>
+    </item>
+    <item android:bottom="12dp" android:left="22dp" android:right="22dp" android:top="10dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="28dp"
+                android:startColor="#2E1C0E"
+                android:endColor="#4A3018" />
+        </shape>
+    </item>
+</layer-list>

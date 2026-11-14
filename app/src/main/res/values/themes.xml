@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 应用主题：基于 AppCompat 基础主题自定义（不引入 Material 组件库） -->
+    <style name="Theme.MathMole" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/page_bg</item>
+        <item name="android:statusBarColor">@color/page_bg</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- 双保险：部分厂商 ROM（如 MIUI）会重新显示状态栏，
+             windowFullscreen 直接把应用窗口拉到状态栏后面，配合代码里的 insets 隐藏 -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

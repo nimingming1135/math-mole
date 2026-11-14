@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 狗窝：木质小屋（棕木色 + 屋顶斜线感） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" />
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#C9945F"
+                android:endColor="#8B5E34" />
+            <stroke android:width="2dp" android:color="#6E4522" />
+        </shape>
+    </item>
+    <item android:bottom="14dp" android:left="22dp" android:right="22dp" android:top="10dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="30dp"
+                android:startColor="#3B2513"
+                android:endColor="#5A3A1E" />
+        </shape>
+    </item>
+</layer-list>
